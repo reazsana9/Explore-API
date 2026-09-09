@@ -11,7 +11,8 @@ const loadPost = () => {
 const displayPost = (posts) => {
 
     // 1. get the container
-    const postContainer = document.getElementById('post-container');
+    const postContainer = document.getElementById("post-container");
+    postContainer.innerHTML = "";
     // console.log(postContainer);
 
 
@@ -25,11 +26,22 @@ const displayPost = (posts) => {
     posts.forEach(post => {
         console.log(post.title);
         // 2. create HTML element
-        const li = document.createElement("li");
-        li.innerText = post.title;
-        console.log(li);
+        const postCard = document.createElement("div");
+        postCard.innerHTML = `
+        <div class="post-card">
+            <h2>${post.title}</h2>
+            <p>
+            ${post.body}
+            </p>
+        </div>`;
+
+        // 3. add to the container
+        postContainer.appendChild(postCard);
+        // console.log(postCard);
 
         // 3. add li into container
-        postContainer.appendChild(li);
+        // postContainer.appendChild(postCard);
     })
 };
+
+loadPost();
